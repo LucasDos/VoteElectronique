@@ -14,6 +14,13 @@ public class Parti {
         this.nbInscrit = 0;
     }
 
+    public Parti(int id, String nom, String siege, int nbInscrit) {
+        this.id = id;
+        this.nom = nom;
+        this.siege = siege;
+        this.nbInscrit = nbInscrit;
+    }
+
     /** Getters and Setters */
     public int getId() {
         return id;
