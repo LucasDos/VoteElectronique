@@ -8,6 +8,11 @@ public class CandidatDAO {
     static Connection con;
     static Statement stmt;
 
+    /**
+     * Recupère la liste de tout les candidats
+     * @return Liste des candidats
+     * @throws SQLException
+     */
     public ArrayList<Candidat> getAllCandidat() throws SQLException {
         con = DriverManager.getConnection("jdbc:mysql://localhost/vote_electronique?serverTimezone=UTC", "root", "");
         stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -19,12 +24,18 @@ public class CandidatDAO {
                     rs.getString("nom"), rs.getString("prenom")));
         }
 
-        con.close();
         stmt.close();
+        con.close();
 
         return candidats;
     }
 
+    /**
+     * Recupère un candidat avec son ID
+     * @param ID : id du candidat
+     * @return Candidat recherché
+     * @throws SQLException
+     */
     public Candidat getCandidatByID(int ID) throws SQLException{
         con = DriverManager.getConnection("jdbc:mysql://localhost/vote_electronique?serverTimezone=UTC", "root", "");
         stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);

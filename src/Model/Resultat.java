@@ -2,19 +2,19 @@ package Model;
 
 public class Resultat {
     private int id;
-    private Candidat candidat;
+    private int idCandidat;
     private int nbVote;
 
     /** Constructors */
     public Resultat(){
         this.id = 0;
-        this.candidat = new Candidat();
+        this.idCandidat = 0;
         this.nbVote = 0;
     }
 
-    public Resultat(int id, Candidat candidat, int nbVote) {
+    public Resultat(int id, int idCandidat, int nbVote) {
         this.id = id;
-        this.candidat = candidat;
+        this.idCandidat = idCandidat;
         this.nbVote = nbVote;
     }
 
@@ -27,12 +27,12 @@ public class Resultat {
         this.id = id;
     }
 
-    public Candidat getCandidat() {
-        return candidat;
+    public int getIdCandidat() {
+        return idCandidat;
     }
 
-    public void setCandidat(Candidat candidat) {
-        this.candidat = candidat;
+    public void setIdCandidat(int idCandidat) {
+        this.idCandidat = idCandidat;
     }
 
     public int getNbVote() {

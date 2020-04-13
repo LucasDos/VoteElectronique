@@ -8,6 +8,7 @@ public class Votant {
     private String prenom;
     private String ville;
     private Date dateNaissance;
+    private int aVoter;
 
     /** Constructors */
     public Votant(){
@@ -16,14 +17,16 @@ public class Votant {
         this.prenom = "";
         this.ville = "";
         this.dateNaissance = new Date();
+        this.aVoter = 0;
     }
 
-    public Votant(int id, String nom, String prenom, String ville, Date dateNaissance) {
+    public Votant(int id, String nom, String prenom, String ville, Date dateNaissance, int aVoter) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.ville = ville;
         this.dateNaissance = dateNaissance;
+        this.aVoter = aVoter;
     }
 
     /** Getters and Setters */
@@ -65,5 +68,13 @@ public class Votant {
 
     public void setDateNaissance(Date dateNaissance) {
         this.dateNaissance = dateNaissance;
+    }
+
+    public int getaVoter() {
+        return aVoter;
+    }
+
+    public void setaVoter(int aVoter) {
+        this.aVoter = aVoter;
     }
 }

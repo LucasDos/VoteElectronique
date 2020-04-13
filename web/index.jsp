@@ -12,6 +12,8 @@
   </head>
   <body>
     <a href="candidats.jsp">Candidats</a><br>
-    <a href="candidatsAdmin.jsp">Candidats (admin)</a>
+    <a href="vote.jsp">Vote</a><br>
+    <a href="candidatsAdmin.jsp">Candidats (admin)</a><br>
+    <a href="votantsAdmin.jsp">Votants (admin)</a>
   </body>
 </html>

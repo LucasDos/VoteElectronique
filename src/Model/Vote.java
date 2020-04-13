@@ -2,20 +2,20 @@ package Model;
 
 public class Vote {
     private int id;
-    private Candidat candidat;
-    private Votant votant;
+    private int idCandidat;
+    private int idVotant;
 
     /** Constructors */
     public Vote(){
         this.id = 0;
-        this.candidat = new Candidat();
-        this.votant = new Votant();
+        this.idCandidat = 0;
+        this.idVotant = 0;
     }
 
-    public Vote(int id, Candidat candidat, Votant votant) {
+    public Vote(int id, int idCandidat, int idVotant) {
         this.id = id;
-        this.candidat = candidat;
-        this.votant = votant;
+        this.idCandidat = idCandidat;
+        this.idVotant = idVotant;
     }
 
     /** Getters and Setters */
@@ -27,19 +27,19 @@ public class Vote {
         this.id = id;
     }
 
-    public Candidat getCandidat() {
-        return candidat;
+    public int getIdCandidat() {
+        return idCandidat;
     }
 
-    public void setCandidat(Candidat candidat) {
-        this.candidat = candidat;
+    public void setIdCandidat(int idCandidat) {
+        this.idCandidat = idCandidat;
     }
 
-    public Votant getVotant() {
-        return votant;
+    public int getIdVotant() {
+        return idVotant;
     }
 
-    public void setVotant(Votant votant) {
-        this.votant = votant;
+    public void setIdVotant(int idVotant) {
+        this.idVotant = idVotant;
     }
 }
