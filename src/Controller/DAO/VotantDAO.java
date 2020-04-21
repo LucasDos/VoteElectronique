@@ -1,4 +1,4 @@
-package Controller;
+package Controller.DAO;
 
 import Model.Votant;
 
