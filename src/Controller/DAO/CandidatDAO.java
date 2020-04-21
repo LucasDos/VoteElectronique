@@ -1,8 +1,8 @@
 package Controller.DAO;
 
 import Model.Candidat;
-import java.sql.*;
 import java.util.ArrayList;
+import java.sql.*;
 
 public class CandidatDAO {
     static Connection con;
@@ -13,19 +13,14 @@ public class CandidatDAO {
      * @return Liste des candidats
      * @throws SQLException
      */
-    public ArrayList<Candidat> getAllCandidat() throws SQLException {
-        con = DriverManager.getConnection("jdbc:mysql://localhost/vote_electronique?serverTimezone=UTC", "root", "");
-        stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-        ResultSet rs = stmt.executeQuery("SELECT * FROM candidat;");
+    public static ArrayList<Candidat> getAllCandidat() throws SQLException {
+        ResultSet rs = DBConnection.query("SELECT * FROM candidat;");
 
         ArrayList<Candidat> candidats = new ArrayList<Candidat>();
         while(rs.next()){
             candidats.add(new Candidat(rs.getInt("idCandidat"), rs.getInt("idParti"),
                     rs.getString("nom"), rs.getString("prenom")));
         }
-
-        stmt.close();
-        con.close();
 
         return candidats;
     }
@@ -36,8 +31,8 @@ public class CandidatDAO {
      * @return Candidat recherché
      * @throws SQLException
      */
-    public Candidat getCandidatByID(int ID) throws SQLException{
-        con = DriverManager.getConnection("jdbc:mysql://localhost/vote_electronique?serverTimezone=UTC", "root", "");
+    public static Candidat getCandidatByID(int ID) throws SQLException{
+        con = DriverManager.getConnection("jdbc:mysql://localhost:8080/vote_electronique?serverTimezone=UTC", "root", "");
         stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
         ResultSet rs = stmt.executeQuery("SELECT  * FROM candidat WHERE idCandidat = '" + ID + "';");
         Candidat candidat = new Candidat(rs.getInt("idCandidat"), rs.getInt("idParti"), rs.getString("nom"), rs.getString("prenom"));
