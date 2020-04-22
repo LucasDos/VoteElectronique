@@ -14,7 +14,7 @@ public class PartiDAO {
      * @return Liste des partis
      * @throws SQLException
      */
-    public ArrayList<Parti> getAllParti() throws SQLException {
+    public static ArrayList<Parti> getAllParti() throws SQLException {
         con = DriverManager.getConnection("jdbc:mysql://localhost/vote_electronique?serverTimezone=UTC", "root", "");
         stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
         ResultSet rs = stmt.executeQuery("SELECT  * FROM parti;");
@@ -37,7 +37,7 @@ public class PartiDAO {
      * @return Parti recherché
      * @throws SQLException
      */
-    public Parti getPartiByID(int ID) throws SQLException {
+    public static Parti getPartiByID(int ID) throws SQLException {
         con = DriverManager.getConnection("jdbc:mysql://localhost/vote_electronique?serverTimezone=UTC", "root", "");
         stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
         ResultSet rs = stmt.executeQuery("SELECT  * FROM parti WHERE idParti = '" + ID +"';");

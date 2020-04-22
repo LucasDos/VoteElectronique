@@ -18,7 +18,7 @@
   </script>
 </head>
 <body>
-<a href="candidats.jsp">Candidats</a><br>
+<a href="http://localhost:8081/VoteElectronique_war_exploded/candidats">Candidats</a><br>
 <a href="vote.jsp">Vote</a><br>
 <a href="candidatsAdmin.jsp">Candidats (admin)</a><br>
 <a href="votantsAdmin.jsp">Votants (admin)</a><br>
