@@ -15,7 +15,7 @@
     <div class = "main_container">
         <h1>Vote</h1>
 
-        <table>
+        <table id="">
             <tr>
                 <th>Nom</th>
                 <th>Prénom</th>

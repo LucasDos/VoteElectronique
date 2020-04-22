@@ -8,9 +8,17 @@
         <servlet-name>affichageCandidats</servlet-name>
         <servlet-class>Controller.Servlet.CandidatServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>candidatAdmin</servlet-name>
+        <servlet-class>Controller.Servlet.CandidatAdminServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>affichageCandidats</servlet-name>
         <url-pattern>/candidats</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>candidatAdmin</servlet-name>
+        <url-pattern>/candidatsAdministartion</url-pattern>
     </servlet-mapping>
 </web-app>
