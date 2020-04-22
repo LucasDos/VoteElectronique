@@ -6,8 +6,6 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class PartiDAO {
-    static Connection con;
-    static Statement stmt;
 
     /**
      * Recupère la liste de tout les partis
@@ -15,18 +13,13 @@ public class PartiDAO {
      * @throws SQLException
      */
     public static ArrayList<Parti> getAllParti() throws SQLException {
-        con = DriverManager.getConnection("jdbc:mysql://localhost/vote_electronique?serverTimezone=UTC", "root", "");
-        stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-        ResultSet rs = stmt.executeQuery("SELECT  * FROM parti;");
+        ResultSet rs = DBConnection.query("SELECT  * FROM parti;");
 
         ArrayList<Parti> parties = new ArrayList<Parti>();
         while(rs.next()){
             parties.add(new Parti(rs.getInt("idParti"), rs.getString("nom"),
                     rs.getString("siege"), rs.getInt("nbInscrit")));
         }
-
-        con.close();
-        stmt.close();
 
         return parties;
     }
@@ -38,14 +31,22 @@ public class PartiDAO {
      * @throws SQLException
      */
     public static Parti getPartiByID(int ID) throws SQLException {
-        con = DriverManager.getConnection("jdbc:mysql://localhost/vote_electronique?serverTimezone=UTC", "root", "");
-        stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-        ResultSet rs = stmt.executeQuery("SELECT  * FROM parti WHERE idParti = '" + ID +"';");
-        Parti parti = new Parti(rs.getInt("idParti"), rs.getString("nom"), rs.getString("siege"), rs.getInt("nbInscrit"));
+        ResultSet rs = DBConnection.query("SELECT  * FROM parti WHERE idParti = '" + ID +"';");
 
-        stmt.close();
-        con.close();
+        Parti parti = new Parti(rs.getInt("idParti"), rs.getString("nom"),
+                rs.getString("siege"), rs.getInt("nbInscrit"));
 
         return parti;
+    }
+
+    public static void addParti(Parti parti) throws SQLException {
+        String sql = "INSERT INTO `parti`(`nom`, `siege`, `nbInscrit`) VALUES (\""
+                + parti.getNom() + "\",\"" + parti.getSiege() + "\"," + parti.getNbInscrit() +");";
+
+        int exec = DBConnection.exec(sql);
+    }
+
+    public static void modifyNbInscrit(int id, int nbInscrit) throws SQLException {
+        int exec = DBConnection.exec("UPDATE `parti` SET `nbInscrit`=" + nbInscrit + " WHERE idParti=" + id +");");
     }
 }

@@ -12,6 +12,10 @@ public class DBConnection {
 
     private static Connection connection = null;
 
+    /**
+     * Ouvre un connexion avec la BDD
+     * @return connection
+     */
     public static Connection openConnection() {
         if(connection != null) {
             return connection;
@@ -28,6 +32,12 @@ public class DBConnection {
         }
     }
 
+    /**
+     * Envoi une requête SQL afin de récupérer des données dans la BDD
+     * @param sql : requête SQL
+     * @return
+     * @throws SQLException
+     */
     public static ResultSet query(String sql) throws SQLException {
         Connection conn = openConnection();
 
@@ -37,6 +47,12 @@ public class DBConnection {
         return rs;
     }
 
+    /**
+     * Envoi un requête SQL afin de rajouter des données dans la BDD
+     * @param sql : requête SQL
+     * @return
+     * @throws SQLException
+     */
     public static int exec(String sql) throws SQLException {
         Connection conn = openConnection();
 

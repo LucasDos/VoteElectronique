@@ -1,13 +1,12 @@
 package Controller.DAO;
 
 import Model.Candidat;
+import Model.Parti;
+
 import java.util.ArrayList;
 import java.sql.*;
 
 public class CandidatDAO {
-    static Connection con;
-    static Statement stmt;
-
     /**
      * Recupère la liste de tout les candidats
      * @return Liste des candidats
@@ -32,14 +31,25 @@ public class CandidatDAO {
      * @throws SQLException
      */
     public static Candidat getCandidatByID(int ID) throws SQLException{
-        con = DriverManager.getConnection("jdbc:mysql://localhost:8080/vote_electronique?serverTimezone=UTC", "root", "");
-        stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-        ResultSet rs = stmt.executeQuery("SELECT  * FROM candidat WHERE idCandidat = '" + ID + "';");
+        ResultSet rs = DBConnection.query("SELECT  * FROM candidat WHERE idCandidat = '" + ID + "';");
         Candidat candidat = new Candidat(rs.getInt("idCandidat"), rs.getInt("idParti"), rs.getString("nom"), rs.getString("prenom"));
 
-        con.close();
-        stmt.close();
-
         return candidat;
+    }
+
+    /**
+     * Ajoute un candidat a la BDD
+     * @param candidat à ajouter
+     */
+    public static void addCandidat(Candidat candidat) throws SQLException {
+        String sql = "INSERT INTO `candidat`(`idParti`, `nom`, `prenom`) " +
+                "VALUES (" + candidat.getIdParti() + ",\"" + candidat.getNom() + "\",\"" + candidat.getPrenom() + "\");";
+
+        // Ajoute un candidat à la BDD
+        int exec = DBConnection.exec(sql);
+
+        // Incrémente le nombre d'inscrit dans un parti
+        Parti parti = PartiDAO.getPartiByID(candidat.getIdParti());
+        PartiDAO.modifyNbInscrit(parti.getId(), parti.getNbInscrit()+1);
     }
 }

@@ -32,11 +32,9 @@ public class CandidatServlet extends HttpServlet {
                 "    <link rel=\"stylesheet\" href=\"styles.css\">\n" +
                 "</head>");
 
-        // Création d'un tableau
-        out.println("<html><body> <table>");
-
-        // Nom des colonnes
-        out.println("<tr> <th>Nom</th> <th>Prénom</th> <th>Parti</th> </tr>");
+        // Création du tableau des candidats
+        out.println("<html><body><h1>Liste des candidats</h1>");
+        out.println("<table> <tr> <th>Nom</th> <th>Prénom</th> <th>Parti</th> </tr>");
 
         // Rempliassage du tableau
         for(Candidat candidat : candidats){
@@ -48,6 +46,21 @@ public class CandidatServlet extends HttpServlet {
                 }
             }
         }
+        out.println("</table>");
+
+        //Création du tableau des partis
+        out.println("</table><br>" +
+                "<h1>Liste des partis</h1>" +
+                "<table>" +
+                "<tr>" +
+                "<th>Nom</th>" +
+                "<th>Nombre de candidats</th>" +
+                "<th>Siège</>");
+
+        for(Parti parti : partis) {
+            out.println("<tr><td>" + parti.getNom() + "</td> <td>" + parti.getNbInscrit() + "</td> <td>" +  parti.getSiege() + "</td></tr>");
+        }
+        out.println("</table>");
 
         out.println("</body></html/>");
 
