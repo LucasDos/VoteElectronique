@@ -19,9 +19,9 @@
 </head>
 <body>
 <a href="http://localhost:8081/VoteElectronique_war_exploded/candidats">Candidats</a><br>
-<a href="http://localhost:8081/VoteElectronique_war_exploded/candidatsAdministration">Candidats (admin)</a><br>
-<a href="vote.jsp">Vote</a><br>
-<a href="votantsAdmin.jsp">Votants (admin)</a><br>
+<a href="http://localhost:8081/VoteElectronique_war_exploded/candidatsAdministarion">Candidats (admin)</a><br>
+<a href="http://localhost:8081/VoteElectronique_war_exploded/vote">Vote</a><br>
+<a href="http://localhost:8081/VoteElectronique_war_exploded/votants">Votants (admin)</a><br>
 <button onclick="document.getElementById('login').style.display='block'">Se connecter</button>
 <div id="includedContent"></div>
 </body>

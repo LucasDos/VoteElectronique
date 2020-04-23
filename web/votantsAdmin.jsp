@@ -1,73 +1,47 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: clapo
-  Date: 13/04/2020
-  Time: 15:56
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Admin</title>
+    <title>Liste Votants</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class = "main_container">
-        <h1>Liste des votants</h1>
-
+    <div class="main_container">
+        <h1>Liste des candidats</h1>
         <table>
+            <thead>
             <tr>
                 <th>Nom</th>
                 <th>Prénom</th>
                 <th>Ville</th>
-                <th colspan="2">Date de naissance</th>
+                <th>Date de naissance</th>
+                <th>Sélectionner</th>
             </tr>
-            <!-- VALEURS TEST -->
-            <tr>
-                <td>John</td>
-                <td>Wayne</td>
-                <td>Winterset</td>
-                <td>26/05/1907</td>
-                <td class="radio"><input type="radio" name="selectVotant" onclick="
-                    document.getElementById('votant_modifierBtn').disabled=false;
-                    document.getElementById('votant_supprimerBtn').disabled=false"></td>
-            </tr>
-            <tr>
-                <td>John</td>
-                <td>Lennon</td>
-                <td>Liverpool</td>
-                <td>09/10/1940</td>
-                <td class="radio"><input type="radio" name="selectVotant" onclick="
-                    document.getElementById('votant_modifierBtn').disabled=false;
-                    document.getElementById('votant_supprimerBtn').disabled=false"></td>
-            </tr>
-            <tr>
-                <td>John</td>
-                <td>Travolta</td>
-                <td>Englewood</td>
-                <td>18/02/1954</td>
-                <td class="radio"><input type="radio" name="selectVotant" onclick="
-                    document.getElementById('votant_modifierBtn').disabled=false;
-                    document.getElementById('votant_supprimerBtn').disabled=false"></td>
-            </tr>
-            <tr>
-                <td>John</td>
-                <td>Cena</td>
-                <td>West Newbury</td>
-                <td>23/04/1977</td>
-                <td class="radio"><input type="radio" name="selectVotant" onclick="
-                    document.getElementById('votant_modifierBtn').disabled=false;
-                    document.getElementById('votant_supprimerBtn').disabled=false"></td>
-            </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="votant" items="${votant}">
+                <tr>
+                    <td> <c:out value="${votant.nom}"> ${votant.nom} </c:out> </td>
+                    <td> <c:out value="${votant.prenom}"> ${votant.prenom} </c:out> </td>
+                    <td> <c:out value="${votant.ville}"> ${votant.ville} </c:out> </td>
+                    <td> <c:out value="${votant.dateNaissance}"> ${votant.dateNaissance} </c:out></td>
+                    <td class="radio"><input type="radio" id="${vitant.id}" name="selectVotant" onclick="
+                        document.getElementById('votant_modifierBtn').disabled=false;
+                        document.getElementById('votant_supprimerBtn').disabled=false"></td>
+                </tr>
+            </c:forEach>
+            </tbody>
         </table>
         <br>
 
+        <!-- Bouton modifier/supprimer/ajouter -->
         <div class="center">
             <button id="votant_modifierBtn" disabled onclick="document.getElementById('modifVotant').style.display='block'">Modifier</button>
             <button id="votant_supprimerBtn" disabled>Supprimer</button>
             <button onclick="document.getElementById('ajoutVotant').style.display='block'">Ajouter</button>
         </div>
 
+        <!-- Popup ajouter -->
         <div id="ajoutVotant" class="modal">
             <form class="modal-content">
                 <div class="form_container">
@@ -88,6 +62,7 @@
             </form>
         </div>
 
+        <!-- Popup modifier -->
         <div id="modifVotant" class="modal">
             <form class="modal-content">
                 <div class="form_container">

@@ -1,7 +1,6 @@
 package Controller.Servlet;
 
 import Controller.DAO.CandidatDAO;
-import Controller.DAO.DBConnection;
 import Controller.DAO.PartiDAO;
 import Model.Candidat;
 import Model.Parti;

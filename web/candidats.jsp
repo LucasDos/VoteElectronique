@@ -3,7 +3,7 @@
 
 <html>
 <head>
-    <title>Candidats</title>
+    <title>Candidats Liste</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -19,14 +19,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach var="candidat" items="${candidat}">
+                    <c:forEach var="votant" items="${candidat}">
                         <tr>
-                            <td> <c:out value="${candidat.nom}"> ${candidat.nom} </c:out> </td>
-                            <td> <c:out value="${candidat.prenom}"> ${candidat.prenom} </c:out> </td>
+                            <td> <c:out value="${votant.nom}"> ${votant.nom} </c:out> </td>
+                            <td> <c:out value="${votant.prenom}"> ${votant.prenom} </c:out> </td>
                             <td>
                                 <c:forEach var="parti" items="${parti}">
                                     <c:set var="idParti" value="${parti.id}"/>
-                                    <c:if test="${candidat.idParti eq idParti}">
+                                    <c:if test="${votant.idParti eq idParti}">
                                         <c:out value="${parti.nom}"> ${parti.nom} </c:out>
                                     </c:if>
                                 </c:forEach>

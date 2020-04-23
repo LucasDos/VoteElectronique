@@ -8,10 +8,34 @@
         <servlet-name>Candidats</servlet-name>
         <servlet-class>Controller.Servlet.CandidatServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CandidatsAdmin</servlet-name>
+        <servlet-class>Controller.Servlet.CandidatAdminServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VotantAdmin</servlet-name>
+        <servlet-class>Controller.Servlet.VotantServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Vote</servlet-name>
+        <servlet-class>Controller.Servlet.VoteServlet</servlet-class>
+    </servlet>
 
     <!-- Servlet mapping -->
     <servlet-mapping>
         <servlet-name>Candidats</servlet-name>
         <url-pattern>/candidats</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CandidatsAdmin</servlet-name>
+        <url-pattern>/candidatsAdministarion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VotantAdmin</servlet-name>
+        <url-pattern>/votants</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Vote</servlet-name>
+        <url-pattern>/vote</url-pattern>
     </servlet-mapping>
 </web-app>

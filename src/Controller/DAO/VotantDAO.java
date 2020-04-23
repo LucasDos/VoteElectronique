@@ -11,7 +11,7 @@ public class VotantDAO {
      * @return Liste de tout les votants
      * @throws SQLException
      */
-    public ArrayList<Votant> getAllVotant() throws SQLException {
+    public static ArrayList<Votant> getAllVotant() throws SQLException {
         ResultSet rs = DBConnection.query("SELECT  * FROM votant;");
         ArrayList<Votant> votants = new ArrayList<Votant>();
         while(rs.next()){
