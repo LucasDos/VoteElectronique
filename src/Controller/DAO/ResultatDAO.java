@@ -12,7 +12,7 @@ public class ResultatDAO {
      * @return Liste de tout les résultats
      * @throws SQLException
      */
-    public ArrayList<Resultat> getAllResultat() throws SQLException {
+    public static ArrayList<Resultat> getAllResultat() throws SQLException {
         ResultSet rs = DBConnection.query("SELECT  * FROM resultat;");
 
         ArrayList<Resultat> resultats = new ArrayList<Resultat>();
@@ -40,4 +40,11 @@ public class ResultatDAO {
         return resultat;
     }
 
+    public void addVote(int idCandidat) throws SQLException {
+        ResultSet rs = DBConnection.query("SELECT nbVote FROM resultat WHERE idCandidat=" + idCandidat);
+        int nbVote = rs.getInt("nbVote");
+        rs.close();
+
+        int res = DBConnection.exec("UPDATE `resultat` SET `nbVote`=" + nbVote+1 + " WHERE idCandidat=" + idCandidat);
+    }
 }

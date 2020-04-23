@@ -1,6 +1,7 @@
 package Controller.DAO;
 
 import Model.Candidat;
+import Model.Resultat;
 import Model.Votant;
 import Model.Vote;
 
@@ -27,7 +28,10 @@ public class VoteDAO {
 
     public void addVote(Votant votant, Candidat candidat) throws SQLException {
         if(votant.getaVoter() == 0){
-            int exec = DBConnection.exec("INSERT INTO `vote`(`idCandidat`, `idVotant`) VALUES (" + candidat.getId() + "," + votant.getId() + ")");
+            DBConnection.exec("INSERT INTO `vote`(`idCandidat`, `idVotant`) VALUES (" + candidat.getId() + "," + votant.getId() + ")");
+            DBConnection.exec("UPDATE `votant` SET `aVoter`=1 WHERE idVotant=" + votant.getId());
+            ResultatDAO res = new ResultatDAO();
+            res.addVote(candidat.getId());
         }
         else{
             //popup déjà voté !

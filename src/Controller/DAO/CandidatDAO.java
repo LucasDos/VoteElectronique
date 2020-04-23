@@ -2,6 +2,7 @@ package Controller.DAO;
 
 import Model.Candidat;
 import Model.Parti;
+import Model.Resultat;
 
 import java.util.ArrayList;
 import java.sql.*;
@@ -51,5 +52,8 @@ public class CandidatDAO {
         // Incrémente le nombre d'inscrit dans un parti
         Parti parti = PartiDAO.getPartiByID(candidat.getIdParti());
         PartiDAO.modifyNbInscrit(parti.getId(), parti.getNbInscrit()+1);
+
+        // Ajout du candidat dans la table résultat
+        DBConnection.exec("INSERT INTO `resultat`(`idCandidat`, `nbVote`) VALUES (" + candidat.getId() + ", 0)");
     }
 }
