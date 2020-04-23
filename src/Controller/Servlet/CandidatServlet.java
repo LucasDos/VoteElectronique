@@ -23,11 +23,8 @@ public class CandidatServlet extends HttpServlet {
             ArrayList<Candidat> candidats = CandidatDAO.getAllCandidat();
             ArrayList<Parti> partis = PartiDAO.getAllParti();
 
-            if(candidats == null) { candidats = new ArrayList<Candidat>(); }
-            if(partis == null) { partis = new ArrayList<Parti>(); }
-
-            req.setAttribute("candidats", candidats);
-            PrintWriter out = res.getWriter();
+            req.setAttribute("candidat", candidats);
+            req.setAttribute("parti", partis);
 
         } catch (SQLException e) {
             e.printStackTrace();

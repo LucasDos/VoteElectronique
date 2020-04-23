@@ -20,6 +20,8 @@ public class ResultatDAO {
             resultats.add(new Resultat(rs.getInt("idResultat"), rs.getInt("idCandidat"), rs.getInt("nbVote")));
         }
 
+        DBConnection.closeConnection(rs);
+
         return resultats;
     }
 
@@ -34,6 +36,7 @@ public class ResultatDAO {
         Resultat resultat = new Resultat(rs.getInt("idResultat"), rs.getInt("idCandidat"),
                 rs.getInt("nbVote"));
 
+        DBConnection.closeConnection(rs);
         return resultat;
     }
 

@@ -19,6 +19,7 @@ public class VotantDAO {
                     rs.getString("ville"), rs.getDate("dateNaissance"), rs.getInt("aVoter")));
         }
 
+        DBConnection.closeConnection(rs);
         return votants;
     }
 
@@ -33,6 +34,7 @@ public class VotantDAO {
         Votant votant = new Votant(rs.getInt("idVotant"), rs.getString("nom"), rs.getString("prenom"),
                 rs.getString("ville"), rs.getDate("dateNaissance"), rs.getInt("aVoter"));
 
+        DBConnection.closeConnection(rs);
         return votant;
     }
 }

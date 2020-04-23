@@ -33,7 +33,7 @@ public class CandidatDAO {
     public static Candidat getCandidatByID(int ID) throws SQLException{
         ResultSet rs = DBConnection.query("SELECT  * FROM candidat WHERE idCandidat = '" + ID + "';");
         Candidat candidat = new Candidat(rs.getInt("idCandidat"), rs.getInt("idParti"), rs.getString("nom"), rs.getString("prenom"));
-
+        DBConnection.closeConnection(rs);
         return candidat;
     }
 

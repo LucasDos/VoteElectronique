@@ -58,10 +58,14 @@ public class DBConnection {
         Connection conn = openConnection();
 
         stmt = conn.createStatement();
-        return stmt.executeUpdate(sql);
+        int res = stmt.executeUpdate(sql);
+
+        stmt.close();
+        conn.close();
+        return res;
     }
 
-    public static void closeConnection() throws SQLException {
+    public static void closeConnection(ResultSet rs) throws SQLException {
         stmt.close();
         connection.close();
     }

@@ -21,6 +21,7 @@ public class VoteDAO {
             votes.add(new Vote(rs.getInt("idVote"), rs.getInt("idCandidat"), rs.getInt("idVotant")));
         }
 
+        DBConnection.closeConnection(rs);
         return votes;
     }
 

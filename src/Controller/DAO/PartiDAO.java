@@ -35,6 +35,7 @@ public class PartiDAO {
 
         Parti parti = new Parti(rs.getInt("idParti"), rs.getString("nom"),
                 rs.getString("siege"), rs.getInt("nbInscrit"));
+        DBConnection.closeConnection(rs);
 
         return parti;
     }

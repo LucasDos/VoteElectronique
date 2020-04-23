@@ -19,22 +19,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach var="candidat" items="${candidats}">
+                    <c:forEach var="candidat" items="${candidat}">
                         <tr>
+                            <td> <c:out value="${candidat.nom}"> ${candidat.nom} </c:out> </td>
+                            <td> <c:out value="${candidat.prenom}"> ${candidat.prenom} </c:out> </td>
                             <td>
-                                <c:out value="${candidats.getNom}">
-                                    ${candidats.getNom}
-                                </c:out>
-                            </td>
-                            <td>
-                                <c:out value="${candidats.getPrenom}">
-                                    ${candidats.getPrenom()}
-                                </c:out>
-                            </td>
-                            <td>
-                                <c:out value="${candidats.getParti()}">
-                                    ${candidats.getParti()}
-                                </c:out>
+                                <c:forEach var="parti" items="${parti}">
+                                    <c:set var="idParti" value="${parti.id}"/>
+                                    <c:if test="${candidat.idParti eq idParti}">
+                                        <c:out value="${parti.nom}"> ${parti.nom} </c:out>
+                                    </c:if>
+                                </c:forEach>
                             </td>
                         </tr>
                     </c:forEach>
@@ -44,29 +39,24 @@
             <br>
 
             <h1>Liste des partis</h1>
-
             <table>
-                <tr>
-                    <th>Nom</th>
-                    <th>Nombre de candidats</th>
-                </tr>
-                <!-- VALEURS TEST -->
-                <tr>
-                    <td>Parti des Michel</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>Parti des Paul</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>Parti des Pierre</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>Parti des Edouard</td>
-                    <td>1</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Siège</th>
+                        <th>Nombre de candidats</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="parti" items="${parti}">
+                    <tr>
+                        <td> <c:out value="${parti.nom}"> ${parti.nom} </c:out> </td>
+                        <td> <c:out value="${parti.siege}"> ${parti.siege} </c:out> </td>
+                        <td> <c:out value="${parti.nbInscrit}"> ${parti.nbInscrit} </c:out> </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+
             </table>
     </div>
 </body>
