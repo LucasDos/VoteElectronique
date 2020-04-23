@@ -11,6 +11,7 @@ public class DBConnection {
     private static final String PASSWORD = "";
 
     private static Connection connection = null;
+    private static Statement stmt = null;
 
     /**
      * Ouvre un connexion avec la BDD
@@ -41,7 +42,7 @@ public class DBConnection {
     public static ResultSet query(String sql) throws SQLException {
         Connection conn = openConnection();
 
-        Statement stmt = conn.createStatement();
+        stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
 
         return rs;
@@ -56,7 +57,12 @@ public class DBConnection {
     public static int exec(String sql) throws SQLException {
         Connection conn = openConnection();
 
-        Statement stmt = conn.createStatement();
+        stmt = conn.createStatement();
         return stmt.executeUpdate(sql);
+    }
+
+    public static void closeConnection() throws SQLException {
+        stmt.close();
+        connection.close();
     }
 }

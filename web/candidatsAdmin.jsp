@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<form action="/VoteElectronique_war_exploded/candidatAdministration" method="post">
     <div class = "main_container">
         <h1>Liste des candidats</h1>
 
@@ -184,5 +185,6 @@
             </form>
         </div>
     </div>
+</form>
 </body>
 </html>
