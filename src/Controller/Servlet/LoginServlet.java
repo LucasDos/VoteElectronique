@@ -16,8 +16,6 @@ public class LoginServlet extends HttpServlet
 {
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
-        System.out.println("post login");
-
         try
         {
             if(login(req)) {
@@ -41,13 +39,9 @@ public class LoginServlet extends HttpServlet
 
         boolean succes = false;
 
-        System.out.println(pseudo);
-        System.out.println(mdp);
-
         for (Votant votant : votants)
         {
             if(pseudo.equals(votant.getPseudo()) && mdp.equals(votant.getMdp())) {
-                System.out.println("succes");
                 HttpSession session = req.getSession(true);
                 session.setAttribute("pseudo", pseudo);
                 session.setAttribute("logged", Boolean.TRUE);

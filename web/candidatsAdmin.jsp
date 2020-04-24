@@ -57,7 +57,7 @@
             <!-- Bouton ajouter, supprimer et modifier -->
             <div class="center">
                 <button id="candidat_modifierBtn" disabled onclick="document.getElementById('modifCandidat').style.display='block'">Modifier</button>
-                <button id="candidat_supprimerBtn" disabled>Supprimer</button>
+                <button id="candidat_supprimerBtn" disabled onclick="document.getElementById('supprCandidat').style.display='block'">Supprimer</button>
                 <button onclick="document.getElementById('ajoutCandidat').style.display='block'">Ajouter</button>
             </div>
 
@@ -130,6 +130,12 @@
             <div id="supprCandidat" class="modal">
                 <form class="modal-content" action="/VoteElectronique_war_exploded/candidatsAdmin" method="post">
                     <input class="hidden" type="text" name="action" value="supprimer"/>
+                    <div class="form_container center">
+                        <div>Etes-vous sûr de vouloir supprimer le candidat suivant :</div><br>
+                        <div id="nomCandidat"></div>
+                        <input type="submit" value="Confirmer">
+                        <button type="button" onclick="document.getElementById('supprCandidat').style.display='none'">Annuler</button>
+                    </div>
                 </form>
             </div>
 
