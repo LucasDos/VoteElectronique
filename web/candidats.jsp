@@ -10,7 +10,7 @@
         $(function(){
             $("#menuContainer").load("menu.html", function () {
                 let logged = "<%=session.getAttribute("logged")%>";
-                let loginMessage = "<%=session.getAttribute("message")%>";
+                let wrongLogin = "<%=session.getAttribute("wrongLogin")%>";
                 if(logged === "true") {
                     $("#boutonConnexion")[0].hidden = true;
                     $("#boutonDeconnexion")[0].hidden = false;
@@ -19,6 +19,10 @@
                     $("#boutonConnexion")[0].hidden = false;
                     $("#boutonDeconnexion")[0].hidden = true;
                     $("#boutonVote")[0].hidden = true;
+                }
+                if(wrongLogin === "true") {
+                    $("#loginMsg")[0].hidden = false;
+                    <c:set var="wrongLogin" value="false" scope="session" />
                 }
             });
             $("#loginPopup").load("login.html");
@@ -83,8 +87,8 @@
 
     <br>
     <div class="center">
-        <button id="boutonVote" class="boutonFin" hidden>Voter</button>
-        <div id="loginMsg" class="boutonFin"></div>
+        <button id="boutonVote" class="boutonFin" hidden onclick="window.location = 'http://localhost:8081/VoteElectronique_war_exploded/vote'">Voter</button>
+        <div id="loginMsg" class="boutonFin" hidden>Mauvais pseudo ou mot de passe !</div>
     </div>
 
     <div id="loginPopup"></div>

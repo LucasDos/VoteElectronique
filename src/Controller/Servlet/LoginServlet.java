@@ -25,9 +25,8 @@ public class LoginServlet extends HttpServlet
                 if (login(req)) {
                     res.sendRedirect(Objects.requireNonNullElse(redirectURI, "http://localhost:8081/VoteElectronique_war_exploded/candidats"));
                 } else {
-                    System.out.println("wrong login");
                     HttpSession session = req.getSession(true);
-                    session.setAttribute("message", "Mauvais pseudo ou mot de passe !");
+                    session.setAttribute("wrongLogin", Boolean.TRUE);
                     res.sendRedirect("http://localhost:8081/VoteElectronique_war_exploded/candidats");
                 }
             } else if(logType.equals("out")) {
