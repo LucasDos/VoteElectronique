@@ -17,14 +17,6 @@ import java.util.ArrayList;
 
 public class CandidatServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-        //test
-        HttpSession session = req.getSession(false);
-        if(session.getAttribute("logged") == Boolean.TRUE) {
-            System.out.println(session.getAttribute("pseudo"));
-        } else {
-            System.out.println("non connecté");
-        }
-
         res.setContentType("text/html");
         try {
             // Récupère les candidats et partis de la BDD

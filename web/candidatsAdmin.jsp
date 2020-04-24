@@ -30,19 +30,21 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="votant" items="${candidat}">
+                <c:forEach var="candidat" items="${candidat}">
                     <tr>
-                        <td> <c:out value="${votant.nom}"> ${votant.nom} </c:out> </td>
-                        <td> <c:out value="${votant.prenom}"> ${votant.prenom} </c:out> </td>
+                        <td> <c:out value="${candidat.nom}"> ${candidat.nom} </c:out> </td>
+                        <td> <c:out value="${candidat.prenom}"> ${candidat.prenom} </c:out> </td>
                         <td>
                             <c:forEach var="parti" items="${parti}">
                                 <c:set var="idParti" value="${parti.id}"/>
-                                <c:if test="${votant.idParti eq idParti}">
+                                <c:if test="${candidat.idParti eq idParti}">
                                     <c:out value="${parti.nom}"> ${parti.nom} </c:out>
                                 </c:if>
                             </c:forEach>
                         </td>
-                        <td class="radio"><input type="radio" name="selectCandidat" onclick="
+                        <c:set var="idCandidat" value="${candidat.id}" />
+                        <td class="radio"><input type="radio" name="selectCandidat" value="idCandidat"
+                                                 onclick="
                             document.getElementById('candidat_modifierBtn').disabled = false;
                             document.getElementById('candidat_supprimerBtn').disabled = false
                         "></td>
@@ -121,6 +123,13 @@
                             <button type="button" onclick="document.getElementById('modifCandidat').style.display='none'">Annuler</button>
                         </div>
                     </div>
+                </form>
+            </div>
+
+            <!-- Suppression Candidat -->
+            <div id="supprCandidat" class="modal">
+                <form class="modal-content" action="/VoteElectronique_war_exploded/candidatsAdmin" method="post">
+                    <input class="hidden" type="text" name="action" value="supprimer"/>
                 </form>
             </div>
 

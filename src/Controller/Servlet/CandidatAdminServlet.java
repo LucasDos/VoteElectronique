@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.http.HttpRequest;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -38,6 +39,13 @@ public class CandidatAdminServlet extends HttpServlet {
             case "ajouter":
                 addCandidat(req, res);
                 break;
+            case "modifier":
+                modifyCandidat(req, res);
+                break;
+            case "supprimer":
+                removeCandidat(req, res);
+                break;
+
         }
 
         res.sendRedirect("/VoteElectronique_war_exploded/candidatsAdmin");
@@ -52,9 +60,22 @@ public class CandidatAdminServlet extends HttpServlet {
 
         try {
             CandidatDAO.addCandidat(candidat);
-            PrintWriter out = res.getWriter();
-            out.println("Candidat ajouté avec succés !");
-        } catch (SQLException | IOException e) {
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void modifyCandidat(HttpServletRequest req, HttpServletResponse res){
+
+    }
+
+    public void removeCandidat(HttpServletRequest req, HttpServletResponse res) {
+        int idCandidat = Integer.parseInt(req.getParameter("selectCandidat"));
+        System.out.println("test: " + String.valueOf(idCandidat));
+        try {
+            Candidat candidat = CandidatDAO.getCandidatByID(idCandidat);
+            System.out.println(candidat.getPrenom());
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
