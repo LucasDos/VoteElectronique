@@ -30,4 +30,8 @@ public class VoteServlet extends HttpServlet {
 
         req.getRequestDispatcher("/vote.jsp").forward(req,res);
     }
+
+    public void doPost(HttpServletRequest req, HttpServletResponse res){
+
+    }
 }
