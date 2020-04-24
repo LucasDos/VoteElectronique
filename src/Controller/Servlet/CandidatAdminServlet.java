@@ -74,7 +74,13 @@ public class CandidatAdminServlet extends HttpServlet {
 
         try {
             Candidat newCandidat = CandidatDAO.getCandidatByID(idCandidat);
-            if(req.getParameter("selectPartiModif") != "") { newCandidat.setIdParti(Integer.parseInt(req.getParameter("selectPartiModif"))); }
+            if(req.getParameter("selectPartiModif") != "") {
+                Parti tmp = PartiDAO.getPartiByID(newCandidat.getIdParti());
+                PartiDAO.modifyNbInscrit(tmp.getId(), tmp.getNbInscrit()-1);
+                newCandidat.setIdParti(Integer.parseInt(req.getParameter("selectPartiModif")));
+                tmp = PartiDAO.getPartiByID(newCandidat.getIdParti());
+                PartiDAO.modifyNbInscrit(tmp.getId(), tmp.getNbInscrit()+1);
+            }
             if(req.getParameter("modifCandidat_nom") != "") { newCandidat.setNom(req.getParameter("modifCandidat_nom")); }
             if(req.getParameter("modifCandidat_prenom") != "") { newCandidat.setPrenom(req.getParameter("modifCandidat_prenom")); }
 
