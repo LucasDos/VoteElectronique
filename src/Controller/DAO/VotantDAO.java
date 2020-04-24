@@ -16,7 +16,7 @@ public class VotantDAO {
         ArrayList<Votant> votants = new ArrayList<Votant>();
         while(rs.next()){
             votants.add(new Votant(rs.getInt("idVotant"), rs.getString("nom"), rs.getString("prenom"),
-                    rs.getString("ville"), rs.getDate("dateNaissance"), rs.getInt("aVoter")));
+                    rs.getString("ville"), rs.getDate("dateNaissance"), rs.getInt("aVoter"), rs.getString("mdp")));
         }
 
         DBConnection.closeConnection(rs);
@@ -32,7 +32,7 @@ public class VotantDAO {
     public Votant getVotantByID(int idVotant) throws SQLException {
         ResultSet rs =DBConnection.query("SELECT  * FROM votant WHERE idVotant='" + idVotant + "';");
         Votant votant = new Votant(rs.getInt("idVotant"), rs.getString("nom"), rs.getString("prenom"),
-                rs.getString("ville"), rs.getDate("dateNaissance"), rs.getInt("aVoter"));
+                rs.getString("ville"), rs.getDate("dateNaissance"), rs.getInt("aVoter"), rs.getString("mdp"));
 
         DBConnection.closeConnection(rs);
         return votant;

@@ -5,9 +5,18 @@
 <head>
     <title>Candidats Liste</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $("#menuContainer").load("menu.html");
+            $("#loginPopup").load("login.html");
+        });
+    </script>
 </head>
 
 <body>
+    <div id="menuContainer"></div>
+
     <div class="main_container">
         <h1>Liste des candidats</h1>
             <table>
@@ -56,8 +65,14 @@
                     </tr>
                 </c:forEach>
                 </tbody>
-
             </table>
     </div>
+
+    <br>
+    <div class="center">
+        <button class="boutonFin" hidden>Voter</button>
+    </div>
+
+    <div id="loginPopup"></div>
 </body>
 </html>

@@ -4,10 +4,21 @@
 <head>
     <title>Liste Votants</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $("#menuContainer").load("menu.html", function () {
+                $("#menuVotants")[0].hidden = false;
+            });
+            $("#loginPopup").load("login.html");
+        });
+    </script>
 </head>
 <body>
+    <div id="menuContainer"></div>
+
     <div class="main_container">
-        <h1>Liste des candidats</h1>
+        <h1>Liste des votants</h1>
         <table>
             <thead>
             <tr>
@@ -83,5 +94,7 @@
             </form>
         </div>
     </div>
+
+    <div id="loginPopup"></div>
 </body>
 </html>
