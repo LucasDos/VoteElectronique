@@ -37,11 +37,12 @@ public class ResultatDAO {
         return resultat;
     }
 
-    public void addVote(int idCandidat) throws SQLException {
+    public static void addVote(int idCandidat) throws SQLException {
         ResultSet rs = DBConnection.query("SELECT nbVote FROM resultat WHERE idCandidat=" + idCandidat);
-        int nbVote = rs.getInt("nbVote");
+        rs.next();
+        int nbVote = rs.getInt("nbVote")+1;
         rs.close();
 
-        int res = DBConnection.exec("UPDATE `resultat` SET `nbVote`=" + nbVote+1 + " WHERE idCandidat=" + idCandidat);
+        int res = DBConnection.exec("UPDATE `resultat` SET `nbVote`=" + nbVote + " WHERE idCandidat=" + idCandidat);
     }
 }

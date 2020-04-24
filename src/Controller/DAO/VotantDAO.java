@@ -29,7 +29,7 @@ public class VotantDAO {
      * @return Votant recherché
      * @throws SQLException
      */
-    public Votant getVotantByID(int idVotant) throws SQLException {
+    public static Votant getVotantByID(int idVotant) throws SQLException {
         ResultSet rs =DBConnection.query("SELECT  * FROM votant WHERE idVotant='" + idVotant + "';");
         Votant votant = new Votant(rs.getInt("idVotant"), rs.getString("nom"), rs.getString("prenom"),
                 rs.getString("ville"), rs.getString("dateNaissance"), rs.getInt("aVoter"), rs.getString("mdp"));
@@ -47,5 +47,9 @@ public class VotantDAO {
 
     public static void removeVotant(int idVotant) throws SQLException {
         int exec = DBConnection.exec("DELETE FROM `votant` WHERE idVotant=" + idVotant + ";");
+    }
+
+    public static void aVoterSwap(int idVotant) throws SQLException {
+        int exec = DBConnection.exec("UPDATE `votant` SET `aVoter`=1 WHERE idVotant=" + idVotant + ";");
     }
 }

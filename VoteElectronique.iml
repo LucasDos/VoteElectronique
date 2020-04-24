@@ -18,7 +18,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
     <content url="jar://$MODULE_DIR$/../mysql-connector-java-8.0.19/mysql-connector-java-8.0.19.jar!/" />
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="13" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="java" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="apache-tomcat-9.0" level="project" />

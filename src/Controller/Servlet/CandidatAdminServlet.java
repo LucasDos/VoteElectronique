@@ -85,7 +85,6 @@ public class CandidatAdminServlet extends HttpServlet {
             if(req.getParameter("modifCandidat_prenom") != "") { newCandidat.setPrenom(req.getParameter("modifCandidat_prenom")); }
 
             CandidatDAO.modifyCandidat(newCandidat);
-
         } catch (SQLException e) {
             e.printStackTrace();
         }

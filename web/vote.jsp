@@ -32,7 +32,6 @@
                 <th>Nom</th>
                 <th>Prénom</th>
                 <th>Parti</th>
-                <th>Sélectionner</th>
             </tr>
             </thead>
             <tbody>
@@ -48,7 +47,6 @@
                             </c:if>
                         </c:forEach>
                     </td>
-                    <td class="radio"><input type="radio" name="voteCandidat" onclick=" document.getElementById('voteBtn').disabled=false"> </td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -58,20 +56,24 @@
 
         <!-- Bouton vote -->
         <div class="center">
-            <button id="voteBtn" disabled onclick="document.getElementById('confirmVote').style.display='block'">Voter</button>
+            <button id="voteBtn" onclick="document.getElementById('confirmVote').style.display='block'">Voter</button>
         </div>
 
         <!-- Popup Vote -->
         <div id="confirmVote" class="modal">
-            <form class="modal-content">
+            <form class="modal-content" action="/VoteElectronique_war_exploded/vote" method="post">
+                <input class="hidden" type="text" name="action" value="voter"/>
                 <div class="form_container">
                     <div class="center">
-                        Vous êtes sur le point de voter pour :<br>
-                        <br>
-                        <b>Nom du cadidat <!-- a faire --></b><br>
-                        <br>
-                        <button type="submit">Confirmer</button>
-                        <button onclick="document.getElementById('confirmVote').style.display='none'">Annuler</button>
+                        Sélectionner le candidat pour soummettre un vote :<br>
+                        <select name="selectCandidat">
+                            <c:forEach var="candidat" items="${candidat}" >
+                                <option value="${candidat.id}"><c:out value="${candidat.nom}">${candidat.nom}</c:out>
+                                    <c:out value="${candidat.prenom}">${candidat.prenom}</c:out> </option>
+                            </c:forEach>
+                        </select>
+                        <input type="submit" value="Confirmer"/>
+                        <button type="button" onclick="document.getElementById('confirmVote').style.display='none'">Annuler</button>
                     </div>
                 </div>
             </form>

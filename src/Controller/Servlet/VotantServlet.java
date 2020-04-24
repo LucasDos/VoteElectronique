@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class VotantServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
