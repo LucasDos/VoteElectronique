@@ -41,7 +41,7 @@ div.center {
     background-color: #4CAF50;
 }
 
-#menuVotants:hover {
+.menuBis:hover {
     background-color: #ddd;
     color: black;
 }

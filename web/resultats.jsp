@@ -7,8 +7,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
         $(function(){
-            $("#menuContainer").load("menu.html");
+            $("#menuContainer").load("menu.html", function () {
+                let logged = "<%=session.getAttribute("logged")%>";
+                if(logged === "true") {
+                    $("#boutonConnexion")[0].hidden = true;
+                    $("#boutonDeconnexion")[0].hidden = false;
+                } else {
+                    $("#boutonConnexion")[0].hidden = false;
+                    $("#boutonDeconnexion")[0].hidden = true;
+                }
+            });
             $("#loginPopup").load("login.html");
+            $("#logoutPopup").load("logout.html");
         });
     </script>
 </head>
@@ -54,5 +64,6 @@
     </div>
 
     <div id="loginPopup"></div>
+    <div id="logoutPopup"></div>
 </body>
 </html>

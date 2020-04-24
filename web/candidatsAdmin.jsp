@@ -228,7 +228,7 @@
 
             <br>
             <div class="center">
-                <button class="boutonFin">Cloturer les votes</button>
+                <button id="boutonVote" class="boutonFin" onclick="window.location = 'http://localhost:8081/VoteElectronique_war_exploded/vote'">Voter</button>
             </div>
         </div>
 

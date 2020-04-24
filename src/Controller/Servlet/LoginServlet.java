@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet
 
                     if (req.getParameter("pseudo").equals("Admin.Admin") && req.getParameter("mdp").equals("password")) {
                         session.setAttribute("admin", Boolean.TRUE);
-                        res.sendRedirect("http://localhost:8081/VoteElectronique_war_exploded/candidatsAdmin");
+                        res.sendRedirect(Objects.requireNonNullElse(redirectURI, "http://localhost:8081/VoteElectronique_war_exploded/candidatsAdmin"));
                     } else {
                         session.setAttribute("admin", Boolean.FALSE);
                         res.sendRedirect(Objects.requireNonNullElse(redirectURI, "http://localhost:8081/VoteElectronique_war_exploded/candidats"));

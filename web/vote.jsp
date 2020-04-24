@@ -9,6 +9,10 @@
         $(function(){
             $("#menuContainer").load("menu.html", function () {
                 let logged = "<%=session.getAttribute("logged")%>";
+                let admin = "<%=session.getAttribute("admin")%>";
+                if(admin === "true") {
+                    $("#menuVotants")[0].hidden = false;
+                }
                 if(logged === "true") {
                     $("#boutonConnexion")[0].hidden = true;
                     $("#boutonDeconnexion")[0].hidden = false;
