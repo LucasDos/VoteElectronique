@@ -31,7 +31,6 @@ public class PartiDAO {
      * @throws SQLException
      */
     public static Parti getPartiByID(int ID) throws SQLException {
-        System.out.println("SELECT  * FROM parti WHERE idParti='" + ID +"';");
         ResultSet rs = DBConnection.query("SELECT  * FROM parti WHERE idParti='" + ID +"';");
         rs.next();
 

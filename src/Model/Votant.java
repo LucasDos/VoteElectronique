@@ -7,7 +7,7 @@ public class Votant {
     private String nom;
     private String prenom;
     private String ville;
-    private Date dateNaissance;
+    private String dateNaissance;
     private int aVoter;
     private String mdp;
 
@@ -17,12 +17,12 @@ public class Votant {
         this.nom = "";
         this.prenom = "";
         this.ville = "";
-        this.dateNaissance = new Date();
+        this.dateNaissance = "";
         this.aVoter = 0;
         this.mdp = "";
     }
 
-    public Votant(int id, String nom, String prenom, String ville, Date dateNaissance, int aVoter, String mdp) {
+    public Votant(int id, String nom, String prenom, String ville, String dateNaissance, int aVoter, String mdp) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -65,11 +65,11 @@ public class Votant {
         this.ville = ville;
     }
 
-    public Date getDateNaissance() {
+    public String getDateNaissance() {
         return dateNaissance;
     }
 
-    public void setDateNaissance(Date dateNaissance) {
+    public void setDateNaissance(String dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
 

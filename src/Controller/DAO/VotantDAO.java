@@ -16,7 +16,7 @@ public class VotantDAO {
         ArrayList<Votant> votants = new ArrayList<Votant>();
         while(rs.next()){
             votants.add(new Votant(rs.getInt("idVotant"), rs.getString("nom"), rs.getString("prenom"),
-                    rs.getString("ville"), rs.getDate("dateNaissance"), rs.getInt("aVoter"),
+                    rs.getString("ville"), rs.getString("dateNaissance"), rs.getInt("aVoter"),
                     rs.getString("mdp")));
         }
 
@@ -32,8 +32,20 @@ public class VotantDAO {
     public Votant getVotantByID(int idVotant) throws SQLException {
         ResultSet rs =DBConnection.query("SELECT  * FROM votant WHERE idVotant='" + idVotant + "';");
         Votant votant = new Votant(rs.getInt("idVotant"), rs.getString("nom"), rs.getString("prenom"),
-                rs.getString("ville"), rs.getDate("dateNaissance"), rs.getInt("aVoter"), rs.getString("mdp"));
+                rs.getString("ville"), rs.getString("dateNaissance"), rs.getInt("aVoter"), rs.getString("mdp"));
 
         return votant;
+    }
+
+    public static void addVotant(Votant votant) throws SQLException {
+        String SQL = "INSERT INTO `votant`(`nom`, `prenom`, `ville`, `dateNaissance`, `mdp`) " +
+                "VALUES ('"+ votant.getNom() +"','"+ votant.getPrenom() +"','"+ votant.getVille() +"'" +
+                ",'"+ votant.getDateNaissance() +"', '"+ votant.getMdp() +"');";
+
+        int exec = DBConnection.exec(SQL);
+    }
+
+    public static void removeVotant(int idVotant) throws SQLException {
+        int exec = DBConnection.exec("DELETE FROM `votant` WHERE idVotant=" + idVotant + ";");
     }
 }

@@ -87,7 +87,6 @@ public class CandidatAdminServlet extends HttpServlet {
 
     public void removeCandidat(HttpServletRequest req, HttpServletResponse res) {
         int idCandidat = Integer.parseInt(req.getParameter("selectCandidatsSuppr"));
-        System.out.println(req.getParameter("selectCandidatsSuppr"));
         try {
             CandidatDAO.removeCandidat(idCandidat);
         } catch (SQLException e) {

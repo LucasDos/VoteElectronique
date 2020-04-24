@@ -1,9 +1,7 @@
 package Controller.DAO;
 
-import Controller.Servlet.ResultatsServlet;
 import Model.Candidat;
 import Model.Parti;
-import Model.Resultat;
 
 import java.util.ArrayList;
 import java.sql.*;
