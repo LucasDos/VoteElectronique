@@ -12,6 +12,10 @@
         <servlet-name>CandidatsAdmin</servlet-name>
         <servlet-class>Controller.Servlet.CandidatAdminServlet</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>CandidatsAdmin</servlet-name>
+        <url-pattern>/candidatsAdmin</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>VotantAdmin</servlet-name>
         <servlet-class>Controller.Servlet.VotantServlet</servlet-class>
@@ -34,10 +38,7 @@
         <servlet-name>Candidats</servlet-name>
         <url-pattern>/candidats</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CandidatsAdmin</servlet-name>
-        <url-pattern>/candidatsAdmin</url-pattern>
-    </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>VotantAdmin</servlet-name>
         <url-pattern>/votants</url-pattern>

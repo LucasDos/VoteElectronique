@@ -56,17 +56,8 @@ public class DBConnection {
      */
     public static int exec(String sql) throws SQLException {
         Connection conn = openConnection();
-
-        stmt = conn.createStatement();
         int res = stmt.executeUpdate(sql);
 
-        stmt.close();
-        conn.close();
         return res;
-    }
-
-    public static void closeConnection(ResultSet rs) throws SQLException {
-        stmt.close();
-        connection.close();
     }
 }

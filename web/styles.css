@@ -133,3 +133,8 @@ form.modal-content {
     border: 1px solid #888;
     width: 60%;
 }
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+}

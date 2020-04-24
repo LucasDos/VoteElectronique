@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -31,10 +32,18 @@ public class CandidatAdminServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        System.out.println("post");
-
         res.setContentType("text/html");
 
+        switch(req.getParameter("action")){
+            case "ajouter":
+                addCandidat(req, res);
+                break;
+        }
+
+        res.sendRedirect("/VoteElectronique_war_exploded/candidatsAdmin");
+    }
+
+    public void addCandidat(HttpServletRequest req, HttpServletResponse res){
         String nomCandidat = req.getParameter("nomCandidat");
         String prenomCandidat = req.getParameter("prenomCandidat");
         int idParti = Integer.parseInt(req.getParameter("partiCandidat"));
@@ -43,8 +52,11 @@ public class CandidatAdminServlet extends HttpServlet {
 
         try {
             CandidatDAO.addCandidat(candidat);
-        } catch (SQLException e) {
+            PrintWriter out = res.getWriter();
+            out.println("Candidat ajouté avec succés !");
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
     }
+
 }

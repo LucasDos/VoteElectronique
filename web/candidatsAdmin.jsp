@@ -61,9 +61,9 @@
 
             <!-- Popup ajouter candidats -->
             <div id="ajoutCandidat" class="modal">
-                <form class="modal-content">
+                <form class="modal-content" action="/VoteElectronique_war_exploded/candidatsAdmin" method="post">
+                    <input class="hidden" type="text" name="action" value="ajouter"/>
                     <div class="form_container">
-                        <form action="http://localhost:8081/VoteElectronique_war_exploded/candidatsAdmin" method="post">
                             <label for="ajoutCandidat_nom">Nom</label><br>
                             <input type="text" id="ajoutCandidat_nom" name="nomCandidat" onkeyup="
                                 if(document.getElementById('ajoutCandidat_nom').value === ''
@@ -95,7 +95,6 @@
                                 <input type="submit" id="ajoutCandidat_submit" disabled value="Ajouter">
                                 <button type="button" onclick="document.getElementById('ajoutCandidat').style.display='none'">Annuler</button>
                             </div>
-                        </form>
                     </div>
                 </form>
             </div>
