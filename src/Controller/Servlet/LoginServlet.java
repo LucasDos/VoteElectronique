@@ -23,19 +23,21 @@ public class LoginServlet extends HttpServlet
 
             if (logType.equals("in")) {
                 HttpSession session = req.getSession(true);
-                if (req.getParameter("pseudo").equals("Admin.Admin") && req.getParameter("mdp").equals("password")) {
+
+                if(login(req)) {
                     session.setAttribute("pseudo", req.getParameter("pseudo"));
                     session.setAttribute("logged", Boolean.TRUE);
                     session.setAttribute("wrongLogin", Boolean.FALSE);
-                    session.setAttribute("admin", Boolean.TRUE);
-                    res.sendRedirect("http://localhost:8081/VoteElectronique_war_exploded/candidatsAdmin");
-                } else if (login(req)) {
-                    session.setAttribute("pseudo", req.getParameter("pseudo"));
-                    session.setAttribute("logged", Boolean.TRUE);
-                    session.setAttribute("wrongLogin", Boolean.FALSE);
-                    session.setAttribute("admin", Boolean.FALSE);
-                    res.sendRedirect(Objects.requireNonNullElse(redirectURI, "http://localhost:8081/VoteElectronique_war_exploded/candidats"));
+
+                    if (req.getParameter("pseudo").equals("Admin.Admin") && req.getParameter("mdp").equals("password")) {
+                        session.setAttribute("admin", Boolean.TRUE);
+                        res.sendRedirect("http://localhost:8081/VoteElectronique_war_exploded/candidatsAdmin");
+                    } else {
+                        session.setAttribute("admin", Boolean.FALSE);
+                        res.sendRedirect(Objects.requireNonNullElse(redirectURI, "http://localhost:8081/VoteElectronique_war_exploded/candidats"));
+                    }
                 } else {
+                    session.setAttribute("id", "");
                     session.setAttribute("pseudo", "");
                     session.setAttribute("logged", Boolean.FALSE);
                     session.setAttribute("wrongLogin", Boolean.TRUE);
@@ -43,7 +45,7 @@ public class LoginServlet extends HttpServlet
                     res.sendRedirect("http://localhost:8081/VoteElectronique_war_exploded/candidats");
                 }
             } else if (logType.equals("out")) {
-                HttpSession session = req.getSession();
+                HttpSession session = req.getSession(false);
                 session.invalidate();
                 res.sendRedirect(Objects.requireNonNullElse(redirectURI, "http://localhost:8081/VoteElectronique_war_exploded/candidats"));
             }
@@ -64,6 +66,8 @@ public class LoginServlet extends HttpServlet
         {
             if(pseudo.equals(votant.getPseudo()) && mdp.equals(votant.getMdp())) {
                 succes = true;
+                HttpSession session = req.getSession(true);
+                session.setAttribute("id", votant.getId());
             }
         }
 

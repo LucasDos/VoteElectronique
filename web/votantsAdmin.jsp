@@ -8,9 +8,17 @@
     <script>
         $(function(){
             $("#menuContainer").load("menu.html", function () {
+                let admin = "<%=session.getAttribute("admin")%>";
                 $("#menuVotants")[0].hidden = false;
+                if(admin === "true") {
+                    $("#boutonConnexion")[0].hidden = true;
+                    $("#boutonDeconnexion")[0].hidden = false;
+                } else {
+                    window.location = "http://localhost:8081/VoteElectronique_war_exploded/candidats";
+                }
             });
             $("#loginPopup").load("login.html");
+            $("#logoutPopup").load("logout.html");
         });
     </script>
 </head>
@@ -88,9 +96,9 @@
                 </div>
             </form>
         </div><br>
-
-
+    </div>
 
     <div id="loginPopup"></div>
+    <div id="logoutPopup"></div>
 </body>
 </html>

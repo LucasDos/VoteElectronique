@@ -4,6 +4,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebFilter(urlPatterns = {"/candidats"})
@@ -19,6 +20,17 @@ public class authFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
 
+        HttpSession session = req.getSession(false);
+
+        if(session != null && session.getAttribute("admin") == Boolean.TRUE) {
+            req.setAttribute(LOGIN_REDIRECT, req.getRequestURI());
+            req.getRequestDispatcher("/candidatsAdmin").forward(req, res);
+        } else {
+            req.setAttribute(LOGIN_REDIRECT, req.getRequestURI());
+            req.getRequestDispatcher("/candidats").forward(req, res);
+        }
+
+        /*
         if(req.getSession(false) != null && req.getSession(false).getAttribute("logged") != Boolean.TRUE) {
             req.setAttribute(LOGIN_REDIRECT, req.getRequestURI());
             req.getRequestDispatcher("/candidats").forward(req, res);
@@ -28,5 +40,7 @@ public class authFilter implements Filter {
         }
 
         chain.doFilter(req, res);
+
+         */
     }
 }
