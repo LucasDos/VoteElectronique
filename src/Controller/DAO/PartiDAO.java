@@ -31,7 +31,9 @@ public class PartiDAO {
      * @throws SQLException
      */
     public static Parti getPartiByID(int ID) throws SQLException {
-        ResultSet rs = DBConnection.query("SELECT  * FROM parti WHERE idParti = '" + ID +"';");
+        System.out.println("SELECT  * FROM parti WHERE idParti='" + ID +"';");
+        ResultSet rs = DBConnection.query("SELECT  * FROM parti WHERE idParti='" + ID +"';");
+        rs.next();
 
         Parti parti = new Parti(rs.getInt("idParti"), rs.getString("nom"),
                 rs.getString("siege"), rs.getInt("nbInscrit"));
@@ -47,6 +49,14 @@ public class PartiDAO {
     }
 
     public static void modifyNbInscrit(int id, int nbInscrit) throws SQLException {
-        int exec = DBConnection.exec("UPDATE `parti` SET `nbInscrit`=" + nbInscrit + " WHERE idParti=" + id +");");
+        int exec = DBConnection.exec("UPDATE `parti` SET `nbInscrit`=" + nbInscrit + " WHERE idParti=" + id +";");
+    }
+
+    public static void modifyParti(Parti newParti) throws SQLException {
+        int exec = DBConnection.exec("UPDATE `parti` SET `nom`='"+ newParti.getNom() +"',`siege`='"+ newParti.getSiege() +"' WHERE idParti=" + newParti.getId() +";");
+    }
+
+    public static void removeParti(int idParti) throws SQLException {
+        int exec = DBConnection.exec("DELETE FROM `parti` WHERE idParti=" + idParti + ";");
     }
 }

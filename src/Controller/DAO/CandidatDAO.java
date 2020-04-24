@@ -1,5 +1,6 @@
 package Controller.DAO;
 
+import Controller.Servlet.ResultatsServlet;
 import Model.Candidat;
 import Model.Parti;
 import Model.Resultat;
@@ -33,6 +34,7 @@ public class CandidatDAO {
      */
     public static Candidat getCandidatByID(int ID) throws SQLException{
         ResultSet rs = DBConnection.query("SELECT  * FROM candidat WHERE idCandidat = '" + ID + "';");
+        rs.next();
         Candidat candidat = new Candidat(rs.getInt("idCandidat"), rs.getInt("idParti"), rs.getString("nom"), rs.getString("prenom"));
 
         return candidat;
@@ -55,5 +57,18 @@ public class CandidatDAO {
 
         // Ajout du candidat dans la table résultat
         DBConnection.exec("INSERT INTO `resultat`(`idCandidat`, `nbVote`) VALUES (" + candidat.getId() + ", 0)");
+    }
+
+    public static void removeCandidat(int idCandidat) throws SQLException {
+        Candidat candidat = getCandidatByID(idCandidat);
+        Parti parti = PartiDAO.getPartiByID(candidat.getIdParti());
+        PartiDAO.modifyNbInscrit(parti.getId(), parti.getNbInscrit()-1);
+
+        int exec = DBConnection.exec("DELETE FROM `candidat` WHERE `idCandidat`=" + idCandidat + ";");
+    }
+
+    public static void modifyCandidat(Candidat modif) throws SQLException {
+        int exec = DBConnection.exec("UPDATE `candidat` SET " +
+                "`idParti`="+ modif.getIdParti() +",`nom`='"+ modif.getNom() +"',`prenom`='"+ modif.getPrenom() +"' WHERE idCandidat=" + modif.getId()+";");
     }
 }

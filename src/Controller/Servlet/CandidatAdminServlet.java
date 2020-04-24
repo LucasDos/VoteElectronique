@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.http.HttpRequest;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -36,14 +34,23 @@ public class CandidatAdminServlet extends HttpServlet {
         res.setContentType("text/html");
 
         switch(req.getParameter("action")){
-            case "ajouter":
+            case "ajouterCandidat":
                 addCandidat(req, res);
                 break;
-            case "modifier":
+            case "modifierCandidat":
                 modifyCandidat(req, res);
                 break;
-            case "supprimer":
+            case "supprimerCandidat":
                 removeCandidat(req, res);
+                break;
+            case "ajouterParti":
+                addParti(req, res);
+                break;
+            case "modifierParti":
+                modifyParti(req, res);
+                break;
+            case "supprimerParti":
+                removeParti(req, res);
                 break;
 
         }
@@ -52,11 +59,8 @@ public class CandidatAdminServlet extends HttpServlet {
     }
 
     public void addCandidat(HttpServletRequest req, HttpServletResponse res){
-        String nomCandidat = req.getParameter("nomCandidat");
-        String prenomCandidat = req.getParameter("prenomCandidat");
-        int idParti = Integer.parseInt(req.getParameter("partiCandidat"));
-
-        Candidat candidat = new Candidat(-1, idParti, nomCandidat, prenomCandidat);
+        Candidat candidat = new Candidat(-1, Integer.parseInt(req.getParameter("partiCandidat")),
+                req.getParameter("nomCandidat"), req.getParameter("prenomCandidat"));
 
         try {
             CandidatDAO.addCandidat(candidat);
@@ -66,18 +70,66 @@ public class CandidatAdminServlet extends HttpServlet {
     }
 
     public void modifyCandidat(HttpServletRequest req, HttpServletResponse res){
+        int idCandidat = Integer.parseInt(req.getParameter("selectCandidatsModify"));
 
-    }
-
-    public void removeCandidat(HttpServletRequest req, HttpServletResponse res) {
-        int idCandidat = Integer.parseInt(req.getParameter("selectCandidat"));
-        System.out.println("test: " + String.valueOf(idCandidat));
         try {
-            Candidat candidat = CandidatDAO.getCandidatByID(idCandidat);
-            System.out.println(candidat.getPrenom());
+            Candidat newCandidat = CandidatDAO.getCandidatByID(idCandidat);
+            if(req.getParameter("selectPartiModif") != "") { newCandidat.setIdParti(Integer.parseInt(req.getParameter("selectPartiModif"))); }
+            if(req.getParameter("modifCandidat_nom") != "") { newCandidat.setNom(req.getParameter("modifCandidat_nom")); }
+            if(req.getParameter("modifCandidat_prenom") != "") { newCandidat.setPrenom(req.getParameter("modifCandidat_prenom")); }
+
+            CandidatDAO.modifyCandidat(newCandidat);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
+    public void removeCandidat(HttpServletRequest req, HttpServletResponse res) {
+        int idCandidat = Integer.parseInt(req.getParameter("selectCandidatsSuppr"));
+        System.out.println(req.getParameter("selectCandidatsSuppr"));
+        try {
+            CandidatDAO.removeCandidat(idCandidat);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addParti(HttpServletRequest req, HttpServletResponse res){
+        Parti parti = new Parti(-1, req.getParameter("nomParti"),
+                req.getParameter("siegeParti"), 0);
+
+        try {
+            PartiDAO.addParti(parti);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void modifyParti(HttpServletRequest req, HttpServletResponse res){
+        int idParti = Integer.parseInt(req.getParameter("selectPartiModify"));
+
+        try {
+            Parti newParti = PartiDAO.getPartiByID(idParti);
+            if(req.getParameter("modifParti_nom") != ""){
+                newParti.setNom(req.getParameter("modifParti_nom"));
+            }
+            if(req.getParameter("modifParti_siege") != ""){
+                newParti.setSiege(req.getParameter("modifParti_siege"));
+            }
+            PartiDAO.modifyParti(newParti);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void removeParti(HttpServletRequest req, HttpServletResponse res){
+        int idParti = Integer.parseInt(req.getParameter("selectPartiSuppr"));
+
+        try {
+            PartiDAO.removeParti(idParti);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
