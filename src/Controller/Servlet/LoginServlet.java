@@ -11,22 +11,31 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class LoginServlet extends HttpServlet
 {
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
-        try
-        {
-            if(login(req)) {
-                String redirectURI = req.getParameter("redirectURI");
+        try {
+            String redirectURI = req.getParameter("redirectURI");
+            String logType = req.getParameter("logType");
 
-                if(redirectURI != null) {
-                    res.sendRedirect(redirectURI);
+            if(logType.equals("in")) {
+                if (login(req)) {
+                    res.sendRedirect(Objects.requireNonNullElse(redirectURI, "http://localhost:8081/VoteElectronique_war_exploded/candidats"));
+                } else {
+                    System.out.println("wrong login");
+                    HttpSession session = req.getSession(true);
+                    session.setAttribute("message", "Mauvais pseudo ou mot de passe !");
+                    res.sendRedirect("http://localhost:8081/VoteElectronique_war_exploded/candidats");
                 }
+            } else if(logType.equals("out")) {
+                HttpSession session = req.getSession();
+                session.invalidate();
+                res.sendRedirect(Objects.requireNonNullElse(redirectURI, "http://localhost:8081/VoteElectronique_war_exploded/candidats"));
             }
-        } catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

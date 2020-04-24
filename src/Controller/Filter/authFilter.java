@@ -19,7 +19,7 @@ public class authFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
 
-        if(req.getSession(false).getAttribute("logged") != Boolean.TRUE) {
+        if(req.getSession(false) != null && req.getSession(false).getAttribute("logged") != Boolean.TRUE) {
             req.setAttribute(LOGIN_REDIRECT, req.getRequestURI());
             req.getRequestDispatcher("/candidats").forward(req, res);
             return;

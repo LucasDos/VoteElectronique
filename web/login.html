@@ -1,6 +1,7 @@
 <div id="login" class="modal">
     <form class="modal-content" action="http://localhost:8081/VoteElectronique_war_exploded/login" method="post">
         <div class="form_container">
+            <input class="hidden" type="text" name="logType" value="in">
             <input class="hidden" type="text" name="redirectURI" value="http://localhost:8081/VoteElectronique_war_exploded/candidats"/>
             <label for="login_pseudo">Identifiant</label><br>
             <input type="text" id="login_pseudo" name="pseudo"><br>
@@ -9,7 +10,7 @@
             <br>
             <div class="center">
                 <input type="submit" value="Se connecter">
-                <button onclick="document.getElementById('login').style.display='none'">Annuler</button>
+                <button type="button" onclick="document.getElementById('login').style.display='none'">Annuler</button>
             </div>
         </div>
     </form>

@@ -1,0 +1,14 @@
+<div id="logout" class="modal">
+    <form class="modal-content" action="http://localhost:8081/VoteElectronique_war_exploded/login" method="post">
+        <div class="form_container">
+            <input class="hidden" type="text" name="logType" value="out">
+            <input class="hidden" type="text" name="redirectURI" value="http://localhost:8081/VoteElectronique_war_exploded/candidats"/>
+            <div class="center">
+                <div>Voulez-vous vraiment vous déconnecter ?</div>
+                <br>
+                <input type="submit" value="Se déconnecter">
+                <button type="button" onclick="document.getElementById('logout').style.display='none'">Annuler</button>
+            </div>
+        </div>
+    </form>
+</div>

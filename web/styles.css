@@ -52,7 +52,7 @@ div.center {
     justify-content: center;
 }
 
-#boutonConnexion {
+.boutonCoDeco {
     margin-right: 12px;
 }
 
@@ -137,4 +137,7 @@ form.modal-content {
 .hidden {
     opacity: 0;
     visibility: hidden;
+    height: 0;
+    padding: 0 0 !important;
+    margin: 0 0 !important;
 }
