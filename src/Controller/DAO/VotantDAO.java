@@ -16,10 +16,10 @@ public class VotantDAO {
         ArrayList<Votant> votants = new ArrayList<Votant>();
         while(rs.next()){
             votants.add(new Votant(rs.getInt("idVotant"), rs.getString("nom"), rs.getString("prenom"),
-                    rs.getString("ville"), rs.getDate("dateNaissance"), rs.getInt("aVoter"), rs.getString("mdp")));
+                    rs.getString("ville"), rs.getDate("dateNaissance"), rs.getInt("aVoter"),
+                    rs.getString("mdp")));
         }
 
-        DBConnection.closeConnection(rs);
         return votants;
     }
 
@@ -34,7 +34,6 @@ public class VotantDAO {
         Votant votant = new Votant(rs.getInt("idVotant"), rs.getString("nom"), rs.getString("prenom"),
                 rs.getString("ville"), rs.getDate("dateNaissance"), rs.getInt("aVoter"), rs.getString("mdp"));
 
-        DBConnection.closeConnection(rs);
         return votant;
     }
 }
