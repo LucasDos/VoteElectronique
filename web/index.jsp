@@ -12,12 +12,17 @@
   <link rel="stylesheet" href="styles.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script>
+    /*
     $(function(){
       $("#includedContent").load("login.html");
     });
+
+     */
+    window.location = "http://localhost:8081/VoteElectronique_war_exploded/candidats";
   </script>
 </head>
 <body>
+<!--
 <a href="http://localhost:8081/VoteElectronique_war_exploded/candidats">Candidats</a><br>
 <a href="http://localhost:8081/VoteElectronique_war_exploded/candidatsAdmin">Candidats (admin)</a><br>
 <a href="http://localhost:8081/VoteElectronique_war_exploded/vote">Vote</a><br>
@@ -25,5 +30,6 @@
 <a href="http://localhost:8081/VoteElectronique_war_exploded/resultats">Resultats</a><br>
 <button onclick="document.getElementById('login').style.display='block'">Se connecter</button>
 <div id="includedContent"></div>
+-->
 </body>
 </html>
