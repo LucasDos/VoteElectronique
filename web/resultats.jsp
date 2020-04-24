@@ -51,8 +51,8 @@
                         </td>
                         <td>
                             <c:forEach var="resultat" items="${resultat}">
-                                <c:set var="idCandidat" value="${candidat.idCandidat}"/>
-                                <c:if test="${candidat.idCandidat eq idCandidat}">
+                                <c:set var="idCandidat" value="${candidat.id}"/>
+                                <c:if test="${resultat.idCandidat eq idCandidat}">
                                     <c:out value="${resultat.nbVote}"> ${resultat.nbVote} </c:out>
                                 </c:if>
                             </c:forEach>
